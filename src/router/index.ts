@@ -7,22 +7,40 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: Home
+    name: 'index',
+    redirect:'broadcast',
+    component: () => import('../views/index/index.vue'),
+    children: [
+      {
+        name: 'broadcast',
+        path: 'broadcast',
+        component: () => import('../views/broadcast/index.vue')
+      },
+      {
+        name: 'Schedule',
+        path: 'Schedule',
+        component: () => import('../views/Schedule/index.vue')
+      },
+      {
+        name: 'dialogue',
+        path: 'dialogue',
+        component: () => import('../views/dialogue/index.vue')
+      },
+      {
+        name: 'job',
+        path: 'job',
+        component: () => import('../views/job/index.vue')
+      },
+      {
+        name: 'group',
+        path: 'group',
+        component: () => import('../views/group/index.vue')
+      }
+    ]
   },
-  {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
 ]
 
 const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
   routes
 })
 
